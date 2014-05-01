@@ -1,13 +1,10 @@
-// Load jQuery
-var jq = document.createElement('script');
-jq.src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
-document.getElementsByTagName('head')[0].appendChild(jq);
+//// STORE NUMBER IN CART AND CART TOTAL ////
 
-// Store number in cart and cart total
-var numberInCart = $('.product-name').length
-var cartTotal = $('.cart-totals .price .price')[0].innerHTML
+var numberInCart = document.getElementsByClassName('product-name').length
+var cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
 
-// ADD LISTENER FOR SCROLL POSITION & TRIGGER FUNCTIONS
+
+//// ADD LISTENER FOR SCROLL POSITION & TRIGGER FUNCTIONS ////
 
 // Track how far down the page has been scrolled
 var ROOT = (function () {
@@ -19,16 +16,17 @@ var ROOT = (function () {
   return root;
 })();
 
-// Take total scrollHeight, and subtract innerHeight so trigger happens when bottom of viewport hits threshold of 10% from the bottom
-var overlayLimit = (document.body.scrollHeight - window.innerHeight) * 0.9;
-var overlayVisible = false;
-var last = +new Date;
-var didScroll = false; 
-
+// Track whether the browser has been scrolled
 window.onscroll = function(){
   didScroll = true; 
 }
 
+// Take total scrollHeight and subtract the innerHeight. This results in the trigger occuring when bottom of viewport hits the threshold
+var overlayLimit = (document.body.scrollHeight - window.innerHeight) * 0.9;
+var overlayVisible = false;
+var didScroll = false; 
+
+// Check whether the browser has been scrolled and whether or not the viewport occupies the overlay threshold
 setInterval(function(){
   if(didScroll){
     didScroll = false; 
@@ -42,7 +40,7 @@ setInterval(function(){
   }
 }, 30);
 
-
+// Functions to hide and show the overlay
 function hideOverlay(){
     console.log('The hideOverlay function has been called.');
 }
