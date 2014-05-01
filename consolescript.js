@@ -40,11 +40,48 @@ setInterval(function(){
   }
 }, 30);
 
-// Functions to hide and show the overlay
+//// CREATE THE OVERLAY DIV AND UPDATE DOCUMENT STYLES ////
+
+var cartOverlayDiv = document.createElement("div"); 
+cartOverlayDiv.id = "cart-overlay";
+
+var cartNumberHeader = document.createElement("h1");
+var cartTotalHeader = document.createElement("h2");
+
+var cartNumberTextNode = document.createTextNode("Items in Cart: " + numberInCart);
+var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
+
+// Style each element of the overlay
+// cartOverlayDiv.style.backgroundColor = "#000"
+// cartOverlayDiv.style.opacity = "0.7"
+// cartOverlayDiv.style.zindex = "9999"
+// cartOverlayDiv.style.position = "absolute"
+// cartOverlayDiv.style.top = "0"
+// cartOverlayDiv.style.left = "0"
+// cartOverlayDiv.style.width = "100%"
+// cartOverlayDiv.style.height = "100%"
+
+cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 9999; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
+cartOverlayDiv.style.cssText = cssOverlayStyle;
+
+// Connect the elements together
+cartNumberHeader.appendChild(cartNumberTextNode);
+cartTotalHeader.appendChild(cartTotalTextNode);
+cartOverlayDiv.appendChild(cartNumberHeader);
+cartOverlayDiv.appendChild(cartTotalHeader);
+
+// Append the overlay to the body and we're ready to rock
+document.body.appendChild(cartOverlayDiv); 
+
+
+//// FUNCTIONS TO HIDE AND SHOW THE OVERLAY ////
+
 function hideOverlay(){
-    console.log('The hideOverlay function has been called.');
+  console.log('The hideOverlay function has been called.');
+  document.getElementById("cart-overlay").style.visibility = 'hidden';
 }
 
 function showOverlay(){
-    console.log('The showOverlay function has been called.');
+  console.log('The showOverlay function has been called.');
+  document.getElementById("cart-overlay").style.visibility = 'visible';
 }
