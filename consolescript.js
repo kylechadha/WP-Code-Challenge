@@ -37,13 +37,18 @@ setInterval(function(){
       showOverlay(); 
       overlayVisible = true; 
     }
+    // Recalculate overlayLimit in the instance height has changed (ie: cart was opened) 
+    overlayLimit = (document.body.scrollHeight - window.innerHeight) * 0.9;
   }
 }, 30);
 
 //// CREATE THE OVERLAY DIV AND UPDATE DOCUMENT STYLES ////
 
+// Create elements that comprise the overlay
 var cartOverlayDiv = document.createElement("div"); 
+var cartOverlayInnerDiv = document.createElement("div"); 
 cartOverlayDiv.id = "cart-overlay";
+cartOverlayInnerDiv.id = "cart-overlay-inner"
 
 var cartNumberHeader = document.createElement("h1");
 var cartTotalHeader = document.createElement("h2");
@@ -51,27 +56,22 @@ var cartTotalHeader = document.createElement("h2");
 var cartNumberTextNode = document.createTextNode("Items in Cart: " + numberInCart);
 var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
 
-// Style each element of the overlay
-// cartOverlayDiv.style.backgroundColor = "#000"
-// cartOverlayDiv.style.opacity = "0.7"
-// cartOverlayDiv.style.zindex = "9999"
-// cartOverlayDiv.style.position = "absolute"
-// cartOverlayDiv.style.top = "0"
-// cartOverlayDiv.style.left = "0"
-// cartOverlayDiv.style.width = "100%"
-// cartOverlayDiv.style.height = "100%"
-
-cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 9999; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
+// Style elements
+cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 9998; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
+cssOverlayInnerStyle = "background-color: #fff; z-index: 9999; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden;"
 cartOverlayDiv.style.cssText = cssOverlayStyle;
+cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
 
 // Connect the elements together
 cartNumberHeader.appendChild(cartNumberTextNode);
 cartTotalHeader.appendChild(cartTotalTextNode);
-cartOverlayDiv.appendChild(cartNumberHeader);
-cartOverlayDiv.appendChild(cartTotalHeader);
+cartOverlayInnerDiv.appendChild(cartNumberHeader);
+cartOverlayInnerDiv.appendChild(cartTotalHeader);
+// cartOverlayDiv.appendChild(cartOverlayInnerDiv);
 
 // Append the overlay to the body and we're ready to rock
 document.body.appendChild(cartOverlayDiv); 
+document.body.appendChild(cartOverlayInnerDiv); 
 
 
 //// FUNCTIONS TO HIDE AND SHOW THE OVERLAY ////
@@ -79,9 +79,11 @@ document.body.appendChild(cartOverlayDiv);
 function hideOverlay(){
   console.log('The hideOverlay function has been called.');
   document.getElementById("cart-overlay").style.visibility = 'hidden';
+  document.getElementById("cart-overlay-inner").style.visibility = 'hidden';
 }
 
 function showOverlay(){
   console.log('The showOverlay function has been called.');
   document.getElementById("cart-overlay").style.visibility = 'visible';
+  document.getElementById("cart-overlay-inner").style.visibility = 'visible';
 }
