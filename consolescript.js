@@ -63,6 +63,17 @@ function showOverlay(){
 if (document.querySelectorAll(".cart-totals .price .price")[0] == undefined) {
   document.getElementsByClassName('cart-link')[0].click();
   document.getElementsByClassName('close-x')[0].click();
+
+  // Fix for Safari
+  var cartLink = document.getElementsByClassName('cart-link')[0];
+  var evObj = document.createEvent('MouseEvents');
+  evObj.initMouseEvent('click', true, true, window);
+  cartLink.dispatchEvent(evObj);
+
+  var closeX = document.getElementsByClassName('close-x')[0];
+  var evObj = document.createEvent('MouseEvents');
+  evObj.initMouseEvent('click', true, true, window);
+  closeX.dispatchEvent(evObj);
 };
 
 // Add a slight delay to allow cart price information to load
