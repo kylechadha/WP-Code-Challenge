@@ -1,9 +1,18 @@
-//// STORE NUMBER IN CART AND CART TOTAL ////
+/////////////////////////////////////////////////
+///////// BounceExchange Code Challenge /////////
+/////////////////////////////////////////////////
+
+
+//// STORE 'NUMBER IN CART' AND 'CART TOTAL' ////
 
 document.getElementsByClassName('cart-link')[0].click();
 document.getElementsByClassName('close-x')[0].click();
-var numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
-var cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
+var numberInCart, cartTotal;
+
+setTimeout(function() {
+  numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
+  cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
+}, 1500)
 
 
 //// ADD LISTENER FOR SCROLL POSITION & TRIGGER FUNCTIONS ////
@@ -44,39 +53,42 @@ setInterval(function(){
   }
 }, 30);
 
+
 //// CREATE THE OVERLAY DIV AND UPDATE DOCUMENT STYLES ////
 
-// Create elements that comprise the overlay
-var cartOverlayDiv = document.createElement("div"); 
-var cartOverlayInnerDiv = document.createElement("div"); 
-cartOverlayDiv.id = "cart-overlay-outer";
-cartOverlayInnerDiv.id = "cart-overlay-inner"
+setTimeout(function() {
+  // Create elements that comprise the overlay
+  var cartOverlayDiv = document.createElement("div"); 
+  var cartOverlayInnerDiv = document.createElement("div"); 
+  cartOverlayDiv.id = "cart-overlay-outer";
+  cartOverlayInnerDiv.id = "cart-overlay-inner"
 
-var cartNumberHeader = document.createElement("h1");
-var cartTotalHeader = document.createElement("h2");
+  var cartNumberHeader = document.createElement("h1");
+  var cartTotalHeader = document.createElement("h2");
 
-var cartNumberTextNode = document.createTextNode("Items in Cart: " + numberInCart);
-var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
+  var cartNumberTextNode = document.createTextNode("Items in Cart: " + numberInCart);
+  var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
 
-// Style elements
-cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
-cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; color: white; text-align: center"
-cartOverlayDiv.style.cssText = cssOverlayStyle;
-cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
+  // Style elements
+  cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
+  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; color: white; text-align: center"
+  cartOverlayDiv.style.cssText = cssOverlayStyle;
+  cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
 
-// Connect the elements together
-cartNumberHeader.appendChild(cartNumberTextNode);
-cartTotalHeader.appendChild(cartTotalTextNode);
-cartOverlayInnerDiv.appendChild(cartNumberHeader);
-cartOverlayInnerDiv.appendChild(cartTotalHeader);
-// cartOverlayDiv.appendChild(cartOverlayInnerDiv);
+  // Connect the elements together
+  cartNumberHeader.appendChild(cartNumberTextNode);
+  cartTotalHeader.appendChild(cartTotalTextNode);
+  cartOverlayInnerDiv.appendChild(cartNumberHeader);
+  cartOverlayInnerDiv.appendChild(cartTotalHeader);
+  // cartOverlayDiv.appendChild(cartOverlayInnerDiv);
 
-// Append the overlay to the body and we're ready to rock
-document.body.appendChild(cartOverlayDiv); 
-document.body.appendChild(cartOverlayInnerDiv); 
+  // Append the overlay to the body and we're ready to rock
+  document.body.appendChild(cartOverlayDiv); 
+  document.body.appendChild(cartOverlayInnerDiv); 
+}, 1600)
 
 
-//// FUNCTIONS TO HIDE AND SHOW THE OVERLAY ////
+//// FUNCTIONS TO SHOW & HIDE THE OVERLAY ////
 
 function hideOverlay(){
   console.log('The hideOverlay function has been called.');
