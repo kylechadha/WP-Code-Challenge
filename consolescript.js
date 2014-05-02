@@ -75,9 +75,13 @@ setTimeout(function() {
 
   // Style elements
   cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;";
-  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; text-align: center;";
+  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; text-align: center; padding: 20px; padding-top: 28px; border: 5px dotted #45555f";
+  cssNumberHeaderStyle = "color: black;";
+  cssTotalHeaderStyle = "color: black;";
   cartOverlayDiv.style.cssText = cssOverlayStyle;
   cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
+  cartNumberHeader.style.cssText = cssNumberHeaderStyle;
+  cartTotalHeader.style.cssText = cssTotalHeaderStyle;
 
   // Connect the elements together
   cartNumberHeader.appendChild(cartNumberTextNode);
