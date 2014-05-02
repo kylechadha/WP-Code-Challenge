@@ -103,10 +103,8 @@ setTimeout(function() {
   cartTotalHeader.appendChild(cartTotalTextNode);
   cartOverlayInnerDiv.appendChild(cartNumberHeader);
   cartOverlayInnerDiv.appendChild(cartTotalHeader);
-  // cartOverlayDiv.appendChild(cartOverlayInnerDiv);
 
   // Append the overlay to the body and we're ready to rock
   document.body.appendChild(cartOverlayDiv); 
   document.body.appendChild(cartOverlayInnerDiv); 
 }, 1800)
-
