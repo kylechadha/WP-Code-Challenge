@@ -1,6 +1,8 @@
 //// STORE NUMBER IN CART AND CART TOTAL ////
 
-var numberInCart = document.getElementsByClassName('product-name').length
+document.getElementsByClassName('cart-link')[0].click();
+document.getElementsByClassName('close-x')[0].click();
+var numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
 var cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
 
 
@@ -47,7 +49,7 @@ setInterval(function(){
 // Create elements that comprise the overlay
 var cartOverlayDiv = document.createElement("div"); 
 var cartOverlayInnerDiv = document.createElement("div"); 
-cartOverlayDiv.id = "cart-overlay";
+cartOverlayDiv.id = "cart-overlay-outer";
 cartOverlayInnerDiv.id = "cart-overlay-inner"
 
 var cartNumberHeader = document.createElement("h1");
@@ -57,8 +59,8 @@ var cartNumberTextNode = document.createTextNode("Items in Cart: " + numberInCar
 var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
 
 // Style elements
-cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 9998; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
-cssOverlayInnerStyle = "background-color: #fff; z-index: 9999; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden;"
+cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
+cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; color: white; text-align: center"
 cartOverlayDiv.style.cssText = cssOverlayStyle;
 cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
 
@@ -78,12 +80,12 @@ document.body.appendChild(cartOverlayInnerDiv);
 
 function hideOverlay(){
   console.log('The hideOverlay function has been called.');
-  document.getElementById("cart-overlay").style.visibility = 'hidden';
+  document.getElementById("cart-overlay-outer").style.visibility = 'hidden';
   document.getElementById("cart-overlay-inner").style.visibility = 'hidden';
 }
 
 function showOverlay(){
   console.log('The showOverlay function has been called.');
-  document.getElementById("cart-overlay").style.visibility = 'visible';
+  document.getElementById("cart-overlay-outer").style.visibility = 'visible';
   document.getElementById("cart-overlay-inner").style.visibility = 'visible';
 }
