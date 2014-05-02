@@ -1,22 +1,6 @@
-/////////////////////////////////////////////////
-///////// BounceExchange Code Challenge /////////
-/////////////////////////////////////////////////
-//// add on load function ... see if u can remove timers then x_x
-
-//// STORE 'NUMBER IN CART' AND 'CART TOTAL' ////
-
-// If the cart overlay hasn't already been opened, open it
-if (document.querySelectorAll(".cart-totals .price .price")[0] == undefined) {
-  document.getElementsByClassName('cart-link')[0].click();
-  document.getElementsByClassName('close-x')[0].click();
-};
-
-// Add a slight delay to allow cart price information to load
-var numberInCart, cartTotal;
-setTimeout(function() {
-  numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
-  cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
-}, 1500);
+///////////////////////////////////////////////////////////////
+//////////////// BounceExchange Code Challenge ////////////////
+///////////////////////////////////////////////////////////////
 
 
 //// ADD LISTENER FOR SCROLL POSITION & TRIGGER FUNCTIONS ////
@@ -58,6 +42,37 @@ setInterval(function(){
 }, 30);
 
 
+//// FUNCTIONS TO SHOW & HIDE THE OVERLAY ////
+
+function hideOverlay(){
+  console.log('The hideOverlay function has been called.');
+  document.getElementById("cart-overlay-outer").style.visibility = 'hidden';
+  document.getElementById("cart-overlay-inner").style.visibility = 'hidden';
+}
+
+function showOverlay(){
+  console.log('The showOverlay function has been called.');
+  document.getElementById("cart-overlay-outer").style.visibility = 'visible';
+  document.getElementById("cart-overlay-inner").style.visibility = 'visible';
+}
+
+
+//// STORE 'NUMBER IN CART' AND 'CART TOTAL' ////
+
+// If the cart overlay hasn't already been opened, open it
+if (document.querySelectorAll(".cart-totals .price .price")[0] == undefined) {
+  document.getElementsByClassName('cart-link')[0].click();
+  document.getElementsByClassName('close-x')[0].click();
+};
+
+// Add a slight delay to allow cart price information to load
+var numberInCart, cartTotal;
+setTimeout(function() {
+  numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
+  cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
+}, 1500);
+
+
 //// CREATE THE OVERLAY DIV AND UPDATE DOCUMENT STYLES ////
 
 setTimeout(function() {
@@ -75,9 +90,9 @@ setTimeout(function() {
 
   // Style elements
   cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;";
-  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; text-align: center; padding: 20px; padding-top: 28px; border: 5px dotted #45555f";
-  cssNumberHeaderStyle = "color: black;";
-  cssTotalHeaderStyle = "color: black;";
+  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; text-align: center; padding: 20px; padding-top: 44px; border: 10px dotted #45555f";
+  cssNumberHeaderStyle = "font-size: 30px; color: black;";
+  cssTotalHeaderStyle = "font-size: 36px; color: black;";
   cartOverlayDiv.style.cssText = cssOverlayStyle;
   cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
   cartNumberHeader.style.cssText = cssNumberHeaderStyle;
@@ -95,17 +110,3 @@ setTimeout(function() {
   document.body.appendChild(cartOverlayInnerDiv); 
 }, 1800)
 
-
-//// FUNCTIONS TO SHOW & HIDE THE OVERLAY ////
-
-function hideOverlay(){
-  console.log('The hideOverlay function has been called.');
-  document.getElementById("cart-overlay-outer").style.visibility = 'hidden';
-  document.getElementById("cart-overlay-inner").style.visibility = 'hidden';
-}
-
-function showOverlay(){
-  console.log('The showOverlay function has been called.');
-  document.getElementById("cart-overlay-outer").style.visibility = 'visible';
-  document.getElementById("cart-overlay-inner").style.visibility = 'visible';
-}
