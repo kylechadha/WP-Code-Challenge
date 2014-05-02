@@ -1,18 +1,22 @@
 /////////////////////////////////////////////////
 ///////// BounceExchange Code Challenge /////////
 /////////////////////////////////////////////////
-
+//// add on load function ... see if u can remove timers then x_x
 
 //// STORE 'NUMBER IN CART' AND 'CART TOTAL' ////
 
-document.getElementsByClassName('cart-link')[0].click();
-document.getElementsByClassName('close-x')[0].click();
-var numberInCart, cartTotal;
+// If the cart overlay hasn't already been opened, open it
+if (document.querySelectorAll(".cart-totals .price .price")[0] == undefined) {
+  document.getElementsByClassName('cart-link')[0].click();
+  document.getElementsByClassName('close-x')[0].click();
+};
 
+// Add a slight delay to allow cart price information to load
+var numberInCart, cartTotal;
 setTimeout(function() {
   numberInCart = document.getElementsByClassName('cart-total-qty')[0].innerHTML
   cartTotal = document.querySelectorAll(".cart-totals .price .price")[0] ? document.querySelectorAll(".cart-totals .price .price")[0].innerHTML : "$0.00"
-}, 1500)
+}, 1500);
 
 
 //// ADD LISTENER FOR SCROLL POSITION & TRIGGER FUNCTIONS ////
@@ -30,9 +34,9 @@ var ROOT = (function () {
 // Track whether the browser has been scrolled
 window.onscroll = function(){
   didScroll = true; 
-}
+};
 
-// Take total scrollHeight and subtract the innerHeight. This results in the trigger occuring when bottom of viewport hits the threshold
+// Take total scrollHeight and subtract the innerHeight. This results in the trigger occuring when the bottom of viewport hits the threshold
 var overlayLimit = (document.body.scrollHeight - window.innerHeight) * 0.9;
 var overlayVisible = false;
 var didScroll = false; 
@@ -48,7 +52,7 @@ setInterval(function(){
       showOverlay(); 
       overlayVisible = true; 
     }
-    // Recalculate overlayLimit in the instance height has changed (ie: cart was opened) 
+    // Recalculate overlayLimit in the instance height has changed (ie: page change) 
     overlayLimit = (document.body.scrollHeight - window.innerHeight) * 0.9;
   }
 }, 30);
@@ -61,7 +65,7 @@ setTimeout(function() {
   var cartOverlayDiv = document.createElement("div"); 
   var cartOverlayInnerDiv = document.createElement("div"); 
   cartOverlayDiv.id = "cart-overlay-outer";
-  cartOverlayInnerDiv.id = "cart-overlay-inner"
+  cartOverlayInnerDiv.id = "cart-overlay-inner";
 
   var cartNumberHeader = document.createElement("h1");
   var cartTotalHeader = document.createElement("h2");
@@ -70,8 +74,8 @@ setTimeout(function() {
   var cartTotalTextNode = document.createTextNode("Total: " + cartTotal);
 
   // Style elements
-  cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;"
-  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; color: white; text-align: center"
+  cssOverlayStyle = "background-color: #000; opacity: 0.8; z-index: 17777260; position: fixed; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden;";
+  cssOverlayInnerStyle = "background-color: #fff; z-index: 17777261; position: fixed; left: 30%; top: 35%; width: 40%; height: 30%; opacity: 1; visibility: hidden; text-align: center;";
   cartOverlayDiv.style.cssText = cssOverlayStyle;
   cartOverlayInnerDiv.style.cssText = cssOverlayInnerStyle;
 
@@ -85,7 +89,7 @@ setTimeout(function() {
   // Append the overlay to the body and we're ready to rock
   document.body.appendChild(cartOverlayDiv); 
   document.body.appendChild(cartOverlayInnerDiv); 
-}, 1600)
+}, 1800)
 
 
 //// FUNCTIONS TO SHOW & HIDE THE OVERLAY ////
